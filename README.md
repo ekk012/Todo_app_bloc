@@ -33,12 +33,12 @@ flutter pub get
 flutter run
 
 ### Project Structure
-**lib/: Contains the main Flutter application code.**
-**bloc/: Business Logic Component (BLoC) related files.**
-**data/: Data layer, including repositories.**
-**models/: Data models used in the application.**
-**screens/: UI screens for different app views.**
-**widgets/: Reusable UI widgets.**
+- **lib/: Contains the main Flutter application code.**
+- **bloc/: Business Logic Component (BLoC) related files.**
+- **data/: Data layer, including repositories.**
+- **models/: Data models used in the application.**
+- **screens/: UI screens for different app views.**
+- **widgets/: Reusable UI widgets.**
 
 ## Acknowledgements
 -Bloc Library: A predictable state management library for Flutter.
