@@ -334,10 +334,6 @@ yaml
 2.19
 file:///C:/Users/Admin/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2/
 file:///C:/Users/Admin/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2/lib/
-todo
-3.0
-file:///E:/New%20folder/todo/
-file:///E:/New%20folder/todo/lib/
 sky_engine
 3.0
 file:///E:/flutter_windows_3.0.5-stable/flutter/bin/cache/pkg/sky_engine/
@@ -354,4 +350,8 @@ flutter_web_plugins
 3.0
 file:///E:/flutter_windows_3.0.5-stable/flutter/packages/flutter_web_plugins/
 file:///E:/flutter_windows_3.0.5-stable/flutter/packages/flutter_web_plugins/lib/
+todo
+3.0
+file:///E:/todo_app/Todo_app_bloc/
+file:///E:/todo_app/Todo_app_bloc/lib/
 2

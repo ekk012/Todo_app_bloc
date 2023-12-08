@@ -4,7 +4,7 @@
             "outputFile": "com.example.todo.app-mergeDebugResources-9:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "E:\\New folder\\todo\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "E:\\todo_app\\Todo_app_bloc\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

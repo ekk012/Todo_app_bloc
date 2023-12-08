@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
                   controller: textInputTitleController,
                   decoration: const InputDecoration(
                       fillColor: Color(0XFF322a1d),
-                      hintText: 'Task Title',
+                      hintText: 'Title',
                       border: InputBorder.none)),
               content: TextField(
                   controller: textInputUserIdController,
@@ -66,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
                     },
                     child: const Text(
                       'Cancel',
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.black),
                     )),
                 TextButton(
                     onPressed: (() {
@@ -100,72 +100,69 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: BlocBuilder<TasksBloc, TasksState>(
         builder: (context, state) {
-        print('Current state: $state');
+          print('Current state: $state');
 
           if (state is TasksLoading) {
             return const CircularProgressIndicator();
-          }
-       
-         else if (state is TasksLoaded ) {
-          if(state.tasks.isNotEmpty){
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    ...state.tasks.map(
-                      (task) => InkWell(
-                        onTap: (() {
-                          context.read<TasksBloc>().add(UpdateTask(
-                              task:
-                                  task.copyWith(isComplete: !task.isComplete)));
-                        }),
-                        child: TaskWidget(
-                          task: task,
+          } else if (state is TasksLoaded) {
+            if (state.tasks.isNotEmpty) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      ...state.tasks.map(
+                        (task) => InkWell(
+                          onTap: (() {
+                            context.read<TasksBloc>().add(UpdateTask(
+                                task: task.copyWith(
+                                    isComplete: !task.isComplete)));
+                          }),
+                          child: TaskWidget(
+                            task: task,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 80,
-                    )
-                  ],
+                      const SizedBox(
+                        height: 80,
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            );
+              );
+            } else {
+              return const Center(child: Text('No Task Found'));
+            }
           } else {
-            return const Text('No Task Found');
+            return const SizedBox();
           }
-         }else {
-          return const SizedBox();
-         }
         },
       ),
       floatingActionButton: BlocListener<TasksBloc, TasksState>(
-  listener: (context, state) {
-    if (state is TasksLoaded && state.tasks.isNotEmpty) {
-      lastId = state.tasks.last.id;
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Task Updated!'),
-      ));
-    }
-  },
-  child: FloatingActionButton(
-    backgroundColor: Theme.of(context).primaryColor,
-    foregroundColor: const Color(0xFF322a1d),
-    onPressed: () async {
-      Task? task = await _openDialog(lastId ?? 0);
-      if (task != null) {
-        context.read<TasksBloc>().add(
-          AddTask(task: task),
-        );
-      }
-    },
-    tooltip: 'Increment',
-    child: const Icon(Icons.add),
-  ),
-),
-
+        listener: (context, state) {
+          if (state is TasksLoaded && state.tasks.isNotEmpty) {
+            lastId = state.tasks.last.id;
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Task Updated!'),
+            ));
+          }
+        },
+        child: FloatingActionButton(
+          backgroundColor: Theme.of(context).primaryColor,
+          foregroundColor: const Color(0xFF322a1d),
+          onPressed: () async {
+            Task? task = await _openDialog(lastId ?? 0);
+            if (task != null) {
+              context.read<TasksBloc>().add(
+                    AddTask(task: task),
+                  );
+            }
+          },
+          tooltip: 'Increment',
+          child: const Icon(Icons.add),
+        ),
+      ),
     );
   }
 }
